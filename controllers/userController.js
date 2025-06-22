@@ -183,10 +183,10 @@ export async function googleLogin(req,res){
 
 export async function getUsers(req, res) {
   try {
-    const users = await User.find(); // You can filter here if needed
+    const users = await User.find({}).select('-password'); // password එපා එකේ
     res.json(users);
   } catch (error) {
-    res.status(500).json({ message: "Failed to retrieve users" });
+    res.status(500).json({ message: 'Error fetching users' });
   }
 }
 
